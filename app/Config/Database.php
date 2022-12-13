@@ -6,7 +6,7 @@ class Database{
     protected static $username = 'root';
     protected static $password = '';
     protected static $hostname = 'localhost'; //127.0.0.1
-    protected static $dbname = 'staditek';
+    protected static $dbname = 'savoirfaire';
 
     public function __construct()
         {
@@ -48,10 +48,10 @@ try {
     $db2 = new Database;
     $db2->setConnection2();
     $conn = $db2->getConnection();
-    $statement = $conn->prepare("select * from member");
+    $statement = $conn->prepare("select * from admin");
     $statement->execute();
 
-    $dataTable =  $statement->fetchAll(\PDO::FETCH_OBJ);
+    // $dataTable =  $statement->fetchAll(\PDO::FETCH_OBJ);
     // print_r ($dataTable);
 }   catch (\Throwable $th){
         echo $th->getMessage();

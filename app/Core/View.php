@@ -10,4 +10,11 @@ class View
         require __DIR__ . '/../View/' .$view . '.php';
         require __DIR__ . '/../View/template/footer.php';
     }
+
+    public static function create(string $view)
+    {
+        require __DIR__ . '/../View/template/header.php';
+        require __DIR__ . '/../View/' .$view . '.php';
+        require __DIR__ . '/../View/template/footer.php';
+    }
 }

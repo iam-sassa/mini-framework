@@ -5,6 +5,7 @@ namespace OOP\App\Core;
 class Router
 {
     public static $routes = [];
+    public static $baseUrl = 'http://localhost/final/mini-framework/public/';
 
     public function addRoute($method, $path, $controller, $function, $middleware=[]){
         self::$routes[] = [
@@ -14,6 +15,15 @@ class Router
             'function' => $function,
             'middleware' => $middleware
         ];
+    }
+
+    public static function url(string $path){
+        $baseUrl = self::$baseUrl ?? 'http://localhost';
+        return $baseUrl.$path;
+    }
+
+    public static function redirect($path){
+        header("Location: ".self::url($path));
     }
 
     public function run(){
@@ -30,6 +40,11 @@ class Router
             $method == $route['method']) {
             $function = $route['function'];
             $controller = new $route['controller'];
+
+            // foreach ($route['middleware'] as $middleware){
+            //     $instance = new $middleware;
+            //     $instance->before();
+            // }
 
             if(is_object($controller) && method_exists
             ($controller, $function)) {
